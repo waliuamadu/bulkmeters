@@ -1,0 +1,33 @@
+﻿services:
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: gwl
+      POSTGRES_DB: gwl
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U gwl -d gwl"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+  api:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.api
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql://gwl:${POSTGRES_PASSWORD}@db:5432/gwl
+      LISTEN_HOST: 0.0.0.0
+    ports:
+      - "127.0.0.1:4000:4000"
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+volumes:
+  postgres_data:

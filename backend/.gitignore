@@ -6,3 +6,5 @@ dist/
 raw-data/
 backups/
 *.log
+credentials.json
+token.json

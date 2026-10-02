@@ -12,6 +12,7 @@
     "seed": "tsx src/seed.ts"
   },
   "dependencies": {
+    "@google-cloud/local-auth": "^3.0.1",
     "cookie-parser": "^1.4.7",
     "csv-parse": "^7.0.3",
     "dotenv": "^16.5.0",
@@ -19,7 +20,7 @@
     "express": "^5.1.0",
     "express-rate-limit": "^7.5.0",
     "fast-xml-parser": "^5.2.0",
-    "googleapis": "^150.0.0",
+    "googleapis": "^150.0.1",
     "helmet": "^8.1.0",
     "html-to-text": "^9.0.5",
     "pg": "^8.16.0",
@@ -32,7 +33,7 @@
     "@types/html-to-text": "^9.0.4",
     "@types/node": "^22.19.0",
     "@types/pg": "^8.15.0",
-    "tsx": "^4.20.0",
+    "tsx": "^4.23.15",
     "typescript": "^5.9.3"
   },
   "overrides": {
